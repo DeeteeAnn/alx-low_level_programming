@@ -1,18 +1,17 @@
 #include <stdio.h>
 /**
  * main - Entry point
- * 
+ * list all lower case alphabets
  * Return: Always 0
  */
 int main(void)
 {
-	char c;
-	c = 'a';
-	while
-		(c <= 'z');
+	int n = 97;
+
+	while (n <= 122)
 	{
-		putchar(c);
-			c++;
+		putchar(n);
+		n++;
 	}
 	putchar('\n');
 	return(0);
