@@ -16,15 +16,15 @@ int main(void)
 	lf = n % 10;
 	if (lf > 5)
 	{
-		printf("last figure of %d is %d and is greater than 5\n", 98, lf);
+		printf("last figure of %d is %d and is greater than 5\n", 8, lf);
 	}
 	else if (lf == 0)
 	{
-		printf("last figure of %d is %d and is 0\n", -98, lf);
+		printf("last figure of %d is %d and is 0\n", -8, lf);
 	}
 	else
 	{
-		printf("last figure of %d is %d and is less than 6 and not 0\n", 980, lf);
+		printf("last figure of %d is %d and is less than 6 and not 0\n", 0, lf);
 	}
 	return (0);
 }
