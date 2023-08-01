@@ -2,38 +2,39 @@
 
 /**
  * free_listint_safe - frees a linked list
- * @h: pointer to the first node in the linked list
+ * @h: points to first node
  *
- * Return: number of elements in the freed list
+ * Return: pieces left in the freed list
  */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *next, *diffnode
-	size_t len;
-	int diff = 1;
+	size_t len = 0;
+	int ind;
+	listint_t *alt;
 
 	if (!h || !*h)
 		return (0);
 
-	diffnode = find_listint_loop_fl(*h);
-	for (len = 0; (*h != diffnode || diff) && *h != NULL; *h = next)
+	while (*h)
 	{
-		len++;
-		next = (*h)->next
-		if (*h == diffnode && diff)
+		ind = *h - (*h)->next;
+		if (ind > 0)
 		{
-			if (diffnode == diffnode->next)
-			{
-				free(*h);
-				break;
-			}
+			alt = (*h)->next;
+			free(*h);
+			*h = alt;
 			len++;
-			next = next->next;
-			free((*h)->next);
-			diff = 0;
 		}
-		free(*h);
+		else
+		{
+			free(*h);
+			*h = NULL;
+			len++;
+			break;
+		}
 	}
+
 	*h = NULL;
+
 	return (len);
 }
