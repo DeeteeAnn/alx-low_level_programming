@@ -19,18 +19,19 @@ int main(int ac, char **av)
 	char buf[READ_BUF_SIZE];
 	ssize_t unit;
 
-	if (!(ac == 3))
+	if (ac != 3)
 		dprintf(STDERR_FILENO, USAGE), exit(97);
 	file_origin = open(av[1], O_RDONLY);
 	if (file_origin == -1)
 		dprintf(STDERR_FILENO, ERR_NOREAD, av[1]), exit(98);
 	file_dest = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
-	if (file_dest < 0)
+	if (file_dest == -1)
 		dprintf(STDERR_FILENO, ERR_NOWRITE, av[2]), exit(99);
+
 	while ((unit = read(file_origin, buf, READ_BUF_SIZE)) > 0)
 		if (write(file_dest, buf, unit) != unit)
 			dprintf(STDERR_FILENO, ERR_NOWRITE, av[2]), exit(99);
-	if (unit < 0)
+	if (unit == -1)
 		dprintf(STDERR_FILENO, ERR_NOREAD, av[1]), exit(98);
 
 	file_origin = close(file_origin);
